@@ -1,7 +1,7 @@
 'use strict';
 
-const { execSync } = require('child_process');
-const { inInstall } = require('in-publish');
+const {execSync} = require('child_process');
+const {inInstall} = require('in-publish');
 const which = require('npm-which')(__dirname);
 
 if (inInstall()) {
@@ -25,14 +25,17 @@ const ignoreGlobs = [
 ].join(',');
 
 try {
-  exec(`${babelPath} src --quiet -d es --ignore "${ignoreGlobs}" --copy-files --no-copy-ignored`, {
-    BABEL_ENV: 'es',
-  });
   exec(
-    `${babelPath} src --quiet -d lib --ignore "${ignoreGlobs}" --copy-files --no-copy-ignored --plugins @babel/plugin-transform-modules-commonjs`,
+    `${babelPath} src --quiet -d es --extensions \".ts,.tsx\" --ignore "${ignoreGlobs}" --copy-files --no-copy-ignored`,
+    {
+      BABEL_ENV: 'es',
+    },
+  );
+  exec(
+    `${babelPath} src --quiet -d lib --extensions \".ts,.tsx\" --ignore "${ignoreGlobs}" --copy-files --no-copy-ignored --plugins @babel/plugin-transform-modules-commonjs`,
     {
       BABEL_ENV: 'cjs',
-    }
+    },
   );
 } catch (error) {
   console.error('One of the commands failed:', error.stack);

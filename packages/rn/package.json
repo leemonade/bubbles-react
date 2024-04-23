@@ -1,0 +1,43 @@
+{
+  "name": "@bubbles-ui/rn",
+  "version": "0.0.1",
+  "private": true,
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "lint": "eslint .",
+    "start": "react-native start",
+    "test": "jest",
+    "build": "run-s -cs build:clean build:lib build:fix",
+    "build:clean": "rimraf es lib umd esm cjs build",
+    "build:lib": "node scripts/build.js",
+    "build:fix": "rimraf es/**/*.mdx lib/**/*.mdx"
+  },
+  "dependencies": {
+    "@radix-ui/react-select": "^2.0.0"
+  },
+  "peerDependencies": {
+    "react": "^17.0.1",
+    "react-native": "0.74.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.24.1",
+    "@babel/preset-env": "^7.20.0",
+    "@babel/preset-typescript": "^7.24.1",
+    "@babel/runtime": "^7.20.0",
+    "@react-native/babel-preset": "0.74.81",
+    "@react-native/eslint-config": "0.74.81",
+    "@react-native/metro-config": "0.74.81",
+    "@react-native/typescript-config": "^0.74.81",
+    "@types/react": "^18.2.6",
+    "@types/react-test-renderer": "^18.0.0",
+    "react-test-renderer": "18.2.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
